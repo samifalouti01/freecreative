@@ -1,38 +1,261 @@
+/* Global styling */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header styling */
+header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #282c34;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+  width: auto;
+  height: 2rem;
+  margin: 0;
+}
+
+header form {
+  display: flex;
+  align-items: center;
+}
+
+header input {
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+header input:focus {
+  border-color: #61dafb;
+}
+
+header button {
+  background-color: #5271FF;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header button:hover {
+  background-color: #21a1f1;
+}
+
+/* Video List styling */
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Video Card styling */
+.video-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.video-frame {
+  width: 100%;
+  max-height: 170px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px; /* Size of the play icon */
+  color: white;
+  border-radius: 50%;
+  background-color: #00263e30;
+  width: 65px; /* Size of the button */
+  height: 65px; /* Size of the button */
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  transition: background-color 0.3s ease;
+  cursor: pointer; /* Pointer cursor */
+}
+
+.play-button:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.play-button.hide {
+  display: none; /* Hide button when video is playing */
+}
+
+.video-card h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.video-card p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.video-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #5271FF;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.video-card a:hover {
+  color: #21a1f1;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .video-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  header form {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  header input {
+    width: 100%;
+  }
+}
+
+.download-btn {
+  background-color: #5271FF;
+  border: none;
   color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.download-btn:hover {
+  background-color: #00263e;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  background-color: #5271FF; /* Your brand color */
+  color: white;
+  border: none;
+  border-radius: 60px;
+  padding: 13px 15px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it appears above other elements */
+  transition: opacity 0.3s; /* Fade in/out effect */
+  opacity: 0; /* Start with hidden */
+  visibility: hidden; /* Prevent interaction when not visible */
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-to-top.show {
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Allow interaction */
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Full height */
+  width: 100%; /* Full width */
+}
+
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #5271FF; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 150px 0;
+}
+
+.pagination-button {
+  background-color: #5271FF; /* Green background */
+  border: none; /* No borders */
+  color: white; /* White text */
+  padding: 10px 20px; /* Some padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Make the buttons appear in-line */
+  font-size: 16px; /* Increase font size */
+  margin: 4px 2px; /* Some margin */
+  cursor: pointer; /* Pointer/hand icon on hover */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Transition effect for hover */
+}
+
+.pagination-button:hover {
+  background-color: #3498db; /* Darker green background on hover */
+}
+
+.pagination-button.active {
+  background-color: #333; /* Dark background for active page */
+  color: white; /* White text for active page */
 }
